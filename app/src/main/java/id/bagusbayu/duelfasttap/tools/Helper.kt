@@ -4,9 +4,14 @@ import android.view.Gravity
 
 object Helper {
 
-    val countDownPreparing = 4 * 1000L
+    // Prepare game for 3s
+    const val countDownPreparing = 4 * 1000L
 
-    val countDownGame = 11 * 1000L
+    // Start game for 3s
+    const val countDownGame = 11 * 1000L
+
+    // Total targaet 50 tap
+    const val totalGame = 50
 
     val mode = listOf(
         Gravity.START or Gravity.TOP,
