@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Duel Fast Tap</string>
+    <string name="player_2">PLAYER 2</string>
+    <string name="start_value">0</string>
+    <string name="start_time">0</string>
+    <string name="time">TIME</string>
+    <string name="player_1">PLAYER 1</string>
+</resources>
