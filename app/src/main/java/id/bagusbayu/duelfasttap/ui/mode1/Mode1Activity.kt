@@ -20,6 +20,7 @@ class Mode1Activity : AppCompatActivity() {
     private lateinit var countdownTimer: CountDownTimer
     private val mode = Helper.mode
     private var preparing = true
+    private var reset = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +67,9 @@ class Mode1Activity : AppCompatActivity() {
                     }
                 }
             }
+
+            btnBackHome.setOnClickListener { finish() } //end game
+            btnResetGame.setOnClickListener { resetGame() } //reset game
         }
 
     }
@@ -87,6 +91,12 @@ class Mode1Activity : AppCompatActivity() {
     }
 
     private fun startTimer(timeInSeconds: Long) {
+
+        if (reset) {
+            countdownTimer.cancel()
+            reset = false
+        }
+
         countdownTimer = object : CountDownTimer(timeInSeconds, 1000) {
 
             // Time finish
@@ -113,6 +123,7 @@ class Mode1Activity : AppCompatActivity() {
                     tvGameTimeCount.text = "${seconds}S"
                 }
             }
+
         }
         countdownTimer.start()
     }
@@ -156,8 +167,21 @@ class Mode1Activity : AppCompatActivity() {
                 }
             }
 
-            btnPlayer1.visibility = View.GONE
-            btnPlayer2.visibility = View.GONE
+            btnPlayer1.hide()
+            btnPlayer2.hide()
+        }
+    }
+
+    // Reset game from 0 with same mode
+    private fun resetGame(){
+        reset = true
+        model.resetGame()
+        preparing = true
+        preparingGame(preparing)
+
+        binding.apply {
+            tvResultPlayer1.visibility = View.INVISIBLE
+            tvResultPlayer2.visibility = View.INVISIBLE
         }
     }
 

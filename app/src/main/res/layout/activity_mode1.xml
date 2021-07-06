@@ -12,8 +12,8 @@
         android:id="@+id/cl_player1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="30dp"
         android:background="@color/player_1"
+        android:paddingBottom="30dp"
         app:layout_constraintBottom_toTopOf="@id/cl_player2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -25,10 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|bottom"
-            android:textSize="60sp"
-            android:text="@string/loser"
             android:rotation="180"
-            android:visibility="invisible"/>
+            android:text="@string/loser"
+            android:textSize="60sp"
+            android:visibility="invisible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_player1"
@@ -38,6 +38,7 @@
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_baseline_gps_not_fixed_24"
             app:fabSize="normal"
+            app:rippleColor="@color/white"
             app:tint="@color/player_1" />
 
 
@@ -60,9 +61,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|bottom"
-            android:textSize="60sp"
             android:text="@string/winner"
-            android:visibility="invisible"/>
+            android:textSize="60sp"
+            android:visibility="invisible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_player2"
@@ -78,6 +79,7 @@
 
     <!-- Set Game -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_set_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_border"
@@ -117,6 +119,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <!--Time-->
         <LinearLayout
             android:id="@+id/ll_time_game"
@@ -148,6 +151,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <!--PLayer 2-->
         <LinearLayout
             android:id="@+id/ll_player_2"
@@ -181,5 +185,53 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Back to home-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cl_set_game"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_back_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:rotation="90"
+            android:src="@drawable/ic_back_arrow_24"
+            app:fabSize="normal"
+            app:tint="@color/purple_500" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!--Reset Game-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cl_set_game"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_reset_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:rotation="90"
+            android:src="@drawable/ic_reset_arrow_24"
+            app:fabSize="normal"
+            app:tint="@color/purple_500" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
