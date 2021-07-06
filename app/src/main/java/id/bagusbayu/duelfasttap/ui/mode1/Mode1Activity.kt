@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.ActivityMode1Binding
 import id.bagusbayu.duelfasttap.tools.Helper
 import kotlin.random.Random
@@ -16,8 +17,8 @@ class Mode1Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMode1Binding
     private val model: Mode1ViewModel by viewModels()
-    private val mode = Helper.mode
     private lateinit var countdownTimer: CountDownTimer
+    private val mode = Helper.mode
     private var preparing = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,7 @@ class Mode1Activity : AppCompatActivity() {
 
         binding.apply {
 
-//            Player 1
+//            Player 1 Target
             btnPlayer1.apply {
                 setOnClickListener {
                     // Positioning Target
@@ -50,7 +51,7 @@ class Mode1Activity : AppCompatActivity() {
                 }
             }
 
-//            Player 2
+//            Player 2 Target
             btnPlayer2.apply {
                 setOnClickListener {
                     // Positioning Target
@@ -69,6 +70,7 @@ class Mode1Activity : AppCompatActivity() {
 
     }
 
+    // Prepare game state
     private fun preparingGame(preparing: Boolean) {
         binding.apply {
 
@@ -89,11 +91,14 @@ class Mode1Activity : AppCompatActivity() {
 
             // Time finish
             override fun onFinish() {
-                if (preparing) {
-                    preparing = false
-                    preparingGame(preparing)
-                } else {
-
+                when (preparing) {
+                    true -> {
+                        preparing = false
+                        preparingGame(preparing)
+                    }
+                    else -> {
+                        resultGame()
+                    }
                 }
             }
 
@@ -101,12 +106,18 @@ class Mode1Activity : AppCompatActivity() {
             override fun onTick(timeMilliSeconds: Long) {
                 val seconds = (timeMilliSeconds / 1000) % 60
                 Log.d("Mode1Activity", "seconds\t: $seconds")
-                binding.tvGameTimeCount.text = "${seconds}S"
+
+                binding.apply {
+                    if (seconds <= 3) tvGameTimeCount.setTextColor(resources.getColor(R.color.player_1))
+                    else tvGameTimeCount.setTextColor(resources.getColor(R.color.black))
+                    tvGameTimeCount.text = "${seconds}S"
+                }
             }
         }
         countdownTimer.start()
     }
 
+    // Change target position
     private fun positioning(): CoordinatorLayout.LayoutParams {
         // generate random place
         val random = Random.nextInt(9)
@@ -122,6 +133,33 @@ class Mode1Activity : AppCompatActivity() {
         return position
     }
 
+    // show result game state
+    private fun resultGame() {
+        binding.apply {
+
+            tvResultPlayer1.apply {
+                visibility = View.VISIBLE
+                text = when (model.playerWinner()) {
+                    0 -> getString(R.string.draw)
+                    1 -> getString(R.string.winner)
+                    2 -> getString(R.string.loser)
+                    else -> getString(R.string.draw)
+                }
+            }
+            tvResultPlayer2.apply {
+                visibility = View.VISIBLE
+                text = when (model.playerWinner()) {
+                    0 -> getString(R.string.draw)
+                    1 -> getString(R.string.loser)
+                    2 -> getString(R.string.winner)
+                    else -> getString(R.string.draw)
+                }
+            }
+
+            btnPlayer1.visibility = View.GONE
+            btnPlayer2.visibility = View.GONE
+        }
+    }
 
     // Hide the nav bar and status bar when status bar displayed
     override fun onWindowFocusChanged(hasFocus: Boolean) {

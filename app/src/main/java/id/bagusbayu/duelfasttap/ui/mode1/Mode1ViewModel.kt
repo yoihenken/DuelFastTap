@@ -3,6 +3,8 @@ package id.bagusbayu.duelfasttap.ui.mode1
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class Mode1ViewModel : ViewModel() {
 
@@ -12,7 +14,7 @@ class Mode1ViewModel : ViewModel() {
 
     private var currentPlayer1Count = 0
 
-    fun addPlayer1Count (){
+    fun addPlayer1Count () = viewModelScope.launch{
         currentPlayer1Count++
         _player1Count.value = currentPlayer1Count
     }
@@ -23,9 +25,16 @@ class Mode1ViewModel : ViewModel() {
 
     private var currentPlayer2Count = 0
 
-    fun addPlayer2Count (){
+    fun addPlayer2Count () = viewModelScope.launch {
         currentPlayer2Count++
         _player2Count.value = currentPlayer2Count
+    }
+
+    fun playerWinner(): Int {
+        return if (currentPlayer1Count == currentPlayer2Count) 0
+        else if (currentPlayer1Count > currentPlayer2Count) 1
+        else if (currentPlayer1Count < currentPlayer2Count) 2
+        else -1
     }
 
 }
