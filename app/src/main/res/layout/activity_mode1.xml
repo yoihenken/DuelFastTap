@@ -36,11 +36,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
-            android:src="@drawable/ic_baseline_gps_not_fixed_24"
+            android:src="@drawable/ic_target_24"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_1" />
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -71,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
-            android:src="@drawable/ic_baseline_gps_not_fixed_24"
+            android:src="@drawable/ic_target_24"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_2" />
