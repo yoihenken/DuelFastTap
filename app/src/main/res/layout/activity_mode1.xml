@@ -36,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
-            android:src="@drawable/ic_target_24"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_target_24"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_1" />
@@ -70,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
-            android:src="@drawable/ic_target_24"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_target_24"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_2" />
@@ -202,7 +204,7 @@
             android:backgroundTint="@color/white"
             android:gravity="center"
             android:rotation="90"
-            android:src="@drawable/ic_back_arrow_24"
+            app:srcCompat="@drawable/ic_back_arrow_24"
             app:fabSize="normal"
             app:tint="@color/purple_500" />
 
@@ -226,7 +228,7 @@
             android:backgroundTint="@color/white"
             android:gravity="center"
             android:rotation="90"
-            android:src="@drawable/ic_reset_arrow_24"
+            app:srcCompat="@drawable/ic_reset_arrow_24"
             app:fabSize="normal"
             app:tint="@color/purple_500" />
 
