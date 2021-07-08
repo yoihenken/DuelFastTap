@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="30dp"
-    android:background="@color/white"
     android:paddingVertical="15dp">
 
     <TextView
@@ -15,7 +14,6 @@
         android:fontFamily="@font/opensans_semibold"
         android:text="@string/choose_mode"
         android:textAlignment="center"
-        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,10 +98,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_start_game"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
         android:text="@string/start_game"
+        android:fontFamily="@font/opensans_semibold"
+        app:cornerRadius="50dp"
+        app:strokeColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

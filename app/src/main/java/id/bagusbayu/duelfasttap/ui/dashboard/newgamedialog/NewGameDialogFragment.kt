@@ -1,8 +1,10 @@
 package id.bagusbayu.duelfasttap.ui.dashboard.newgamedialog
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +14,14 @@ import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.DialogNewGameBinding
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
 
-class NewGameDialogFragment() : DialogFragment() {
+
+class NewGameDialogFragment(private val baseContext: Context) : DialogFragment() {
 
     private lateinit var binding: DialogNewGameBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +65,11 @@ class NewGameDialogFragment() : DialogFragment() {
             tvHintMode.text = generateHint(selectedMode())
             btnStartGame.setOnClickListener { startModeGame(selectedMode()) }
         }
+
+        // Get color from theme
+        playerColor = funPrimaryColor()
+        timeColor = baseContext.resources.getColor(R.color.player_2)
+        fiftyColor = baseContext.resources.getColor(R.color.player_1)
     }
 
     // Generate selected Mode
@@ -81,58 +93,58 @@ class NewGameDialogFragment() : DialogFragment() {
         when (tbPlayer.checkedButtonId) {
             tbPlayer[0].id -> {
                 tbt2Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.purple_200))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.white)))
+                    setBackgroundColor(playerColor)
+                    iconTint = colorStateList(funOnPrimaryColor())
                 }
                 tbt3Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt4Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
             }
             tbPlayer[1].id -> {
                 tbt2Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt3Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.purple_200))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.white)))
+                    setBackgroundColor(playerColor)
+                    iconTint = colorStateList(funOnPrimaryColor())
                 }
                 tbt4Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
             }
             tbPlayer[2].id -> {
                 tbt2Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt3Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt4Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.purple_200))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.white)))
+                    setBackgroundColor(playerColor)
+                    iconTint = colorStateList(funOnPrimaryColor())
                 }
             }
             else -> {
                 tbt2Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt3Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
                 tbt4Player.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.purple_200)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(playerColor)
                 }
             }
         }
@@ -146,32 +158,32 @@ class NewGameDialogFragment() : DialogFragment() {
         when (tbModeGame.checkedButtonId) {
             tbModeGame[0].id -> {
                 tbtTimeMode.apply {
-                    setBackgroundColor(resources.getColor(R.color.player_2))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.white)))
+                    setBackgroundColor(timeColor)
+                    iconTint = colorStateList(funOnPrimaryColor())
                 }
                 tbt50Mode.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.player_1)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(fiftyColor)
                 }
             }
             tbModeGame[1].id -> {
                 tbtTimeMode.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.player_2)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(timeColor)
                 }
                 tbt50Mode.apply {
-                    setBackgroundColor(resources.getColor(R.color.player_1))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.white)))
+                    setBackgroundColor(fiftyColor)
+                    iconTint = colorStateList(funOnPrimaryColor())
                 }
             }
             else -> {
                 tbtTimeMode.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.player_2)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(timeColor)
                 }
                 tbt50Mode.apply {
-                    setBackgroundColor(resources.getColor(R.color.white))
-                    iconTint = ColorStateList.valueOf((resources.getColor(R.color.player_1)))
+                    setBackgroundColor(funOnPrimaryColor())
+                    iconTint = colorStateList(fiftyColor)
                 }
             }
         }
@@ -192,12 +204,11 @@ class NewGameDialogFragment() : DialogFragment() {
 
     private fun startModeGame(mode: Int) {
         when (mode) {
-            0 -> context?.startActivity(
-                Intent(
-                    context,
-                    Mode1Activity::class.java
-                )
-            )
+            0 -> {
+                baseContext.startActivity(Intent( context,
+                        Mode1Activity::class.java))
+                dismiss()
+            }
             1 -> context?.startActivity(
                 Intent(
                     context,
@@ -231,5 +242,22 @@ class NewGameDialogFragment() : DialogFragment() {
             else -> "Select Mode"
         }
     }
+
+    private fun funOnPrimaryColor(): Int {
+        val typedValue = TypedValue()
+        baseContext.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
+        return typedValue.data
+    }
+
+    private fun funPrimaryColor(): Int {
+        val typedValue = TypedValue()
+        baseContext.theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        return typedValue.data
+    }
+
+    private fun colorStateList(color: Int): ColorStateList = ColorStateList.valueOf(color)
+    private var playerColor = 0
+    private var timeColor = 0
+    private var fiftyColor = 0
 
 }

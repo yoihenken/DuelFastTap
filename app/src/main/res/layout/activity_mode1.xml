@@ -35,11 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="?attr/colorOnPrimary"
             android:visibility="invisible"
             app:srcCompat="@drawable/ic_target_32"
             app:fabSize="normal"
-            app:rippleColor="@color/white"
             app:tint="@color/player_1" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -70,11 +69,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="?attr/colorOnPrimary"
             android:visibility="invisible"
             app:srcCompat="@drawable/ic_target_32"
             app:fabSize="normal"
-            app:rippleColor="@color/white"
             app:tint="@color/player_2" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -84,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_border"
+        android:backgroundTint="?attr/colorOnPrimary"
         android:padding="5dp"
         app:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -117,7 +116,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_value"
-                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -181,7 +179,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_value"
-                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -203,12 +200,12 @@
             android:id="@+id/btn_back_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:gravity="center"
             android:rotation="90"
+            android:backgroundTint="?attr/colorOnPrimary"
             app:srcCompat="@drawable/ic_back_arrow_24"
             app:fabSize="normal"
-            app:tint="@color/purple_500" />
+            app:tint="?attr/colorPrimary" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -227,12 +224,12 @@
             android:id="@+id/btn_reset_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:gravity="center"
             android:rotation="90"
+            android:backgroundTint="?attr/colorOnPrimary"
             app:srcCompat="@drawable/ic_reset_arrow_24"
             app:fabSize="normal"
-            app:tint="@color/purple_500" />
+            app:tint="?attr/colorPrimary"/>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

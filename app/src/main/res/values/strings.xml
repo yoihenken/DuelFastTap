@@ -23,4 +23,6 @@
     <string name="hint_3_player_50">Hint\t: 3 Player, Win the game with Tap 50 Target</string>
     <string name="hint_4_player_time">Hint\t: 4 Player, Win the game in 10 Seconds</string>
     <string name="hint_4_player_50">Hint\t: 4 Player, Win the game with Tap 50 Target</string>
+    <string name="version_app">Version 1.0</string>
+    <string name="close">CLOSE</string>
 </resources>

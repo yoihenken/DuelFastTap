@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".ui.dashboard.DashboardActivity">
 
     <ImageView
@@ -45,10 +44,10 @@
                 android:id="@+id/tv_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_extrabolditalic"
+                android:fontFamily="@font/opensans_semibolditalic"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/purple_500"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -58,41 +57,41 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_new_game"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_light"
             android:text="@string/new_game"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnSecondary"
             app:icon="@drawable/ic_target_32"
-            app:iconPadding="10dp"
+            app:iconPadding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo_ftb" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_history"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_light"
             android:text="@string/history"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnSecondary"
             app:icon="@drawable/ic_history_24"
-            app:iconPadding="10dp"
+            app:iconPadding="20dp"
             app:layout_constraintStart_toStartOf="@id/btn_new_game"
             app:layout_constraintTop_toBottomOf="@id/btn_new_game" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_about"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_light"
             android:text="@string/about"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnSecondary"
             app:icon="@drawable/ic_info_24"
-            app:iconPadding="10dp"
+            app:iconPadding="20dp"
             app:layout_constraintStart_toStartOf="@id/btn_new_game"
             app:layout_constraintTop_toBottomOf="@id/btn_history" />
 
