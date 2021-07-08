@@ -15,4 +15,12 @@
     <string name="mode_2_player">2 Player</string>
     <string name="mode_3_player">3 PLAYER</string>
     <string name="mode_4_player">4 PLAYER</string>
+    <string name="start_game">START GAME</string>
+    <string name="hint">Hint\t:</string>
+    <string name="hint_2_player_time">Hint\t: 2 Player, Win the game in 10 Seconds</string>
+    <string name="hint_2_player_50">Hint\t: 2 Player, Win the game with Tap 50 Target</string>
+    <string name="hint_3_player_time">Hint\t: 3 Player, Win the game in 10 Seconds</string>
+    <string name="hint_3_player_50">Hint\t: 3 Player, Win the game with Tap 50 Target</string>
+    <string name="hint_4_player_time">Hint\t: 4 Player, Win the game in 10 Seconds</string>
+    <string name="hint_4_player_50">Hint\t: 4 Player, Win the game with Tap 50 Target</string>
 </resources>
