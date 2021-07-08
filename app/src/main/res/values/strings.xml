@@ -8,4 +8,11 @@
     <string name="winner">WINNER</string>
     <string name="loser">LOSER</string>
     <string name="draw">DRAW</string>
+    <string name="history">HISTORY</string>
+    <string name="new_game">NEW GAME</string>
+    <string name="about">ABOUT</string>
+    <string name="choose_mode">CHOOSE MODE</string>
+    <string name="mode_2_player">2 Player</string>
+    <string name="mode_3_player">3 PLAYER</string>
+    <string name="mode_4_player">4 PLAYER</string>
 </resources>

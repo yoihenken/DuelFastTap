@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:visibility="invisible"
-            app:srcCompat="@drawable/ic_target_24"
+            app:srcCompat="@drawable/ic_target_32"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_1" />
@@ -72,7 +72,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:visibility="invisible"
-            app:srcCompat="@drawable/ic_target_24"
+            app:srcCompat="@drawable/ic_target_32"
             app:fabSize="normal"
             app:rippleColor="@color/white"
             app:tint="@color/player_2" />

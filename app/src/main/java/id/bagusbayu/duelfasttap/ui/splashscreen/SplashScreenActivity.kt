@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import id.bagusbayu.duelfasttap.databinding.ActivitySplashScreenBinding
+import id.bagusbayu.duelfasttap.ui.dashboard.DashboardActivity
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(mainLooper).postDelayed({
-            startActivity(Intent(this, Mode1Activity::class.java))
+            startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }, delay)
     }
