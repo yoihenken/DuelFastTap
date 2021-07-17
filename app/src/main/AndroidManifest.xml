@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.DuelFastTap">
-        <activity android:name=".ui.dashboard.DashboardActivity"></activity>
+        <activity android:name=".ui.mode2.Mode2Activity"></activity>
+        <activity android:name=".ui.dashboard.DashboardActivity" />
         <activity android:name=".ui.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.DialogNewGameBinding
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
+import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity.Companion.EXTRA_MODE
 
 
 class NewGameDialogFragment(private val baseContext: Context) : DialogFragment() {
@@ -205,16 +206,20 @@ class NewGameDialogFragment(private val baseContext: Context) : DialogFragment()
     private fun startModeGame(mode: Int) {
         when (mode) {
             0 -> {
-                baseContext.startActivity(Intent( context,
-                        Mode1Activity::class.java))
-                dismiss()
-            }
-            1 -> context?.startActivity(
-                Intent(
+                baseContext.startActivity(Intent(
                     context,
                     Mode1Activity::class.java
-                )
-            )
+                ).apply { putExtra(EXTRA_MODE, 0) })
+                dismiss()
+            }
+            1 -> {
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode1Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 1) })
+                dismiss()
+            }
             2 -> context?.startActivity(
                 Intent(
                     context,

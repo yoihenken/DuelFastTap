@@ -17,6 +17,7 @@ class Mode1ViewModel : ViewModel() {
     fun addPlayer1Count() = viewModelScope.launch {
         currentPlayer1Count++
         _player1Count.value = currentPlayer1Count
+        if (currentPlayer1Count >= 50) _stateFifty.value = 1
     }
 
     // Player 2 Count
@@ -28,6 +29,7 @@ class Mode1ViewModel : ViewModel() {
     fun addPlayer2Count() = viewModelScope.launch {
         currentPlayer2Count++
         _player2Count.value = currentPlayer2Count
+        if (currentPlayer2Count >= 50) _stateFifty.value = 2
     }
 
     // Return who player win
@@ -38,10 +40,15 @@ class Mode1ViewModel : ViewModel() {
         else -> -1
     }
 
+    // State win first 50
+    private val _stateFifty = MutableLiveData<Int>()
+    val stateFifty: LiveData<Int> get() = _stateFifty
+
     fun resetGame(){
         currentPlayer1Count = 0
         _player1Count.value = currentPlayer1Count
         currentPlayer2Count = 0
         _player2Count.value = currentPlayer2Count
+        _stateFifty.value = 0
     }
 }

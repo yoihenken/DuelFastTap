@@ -22,6 +22,7 @@ class Mode1Activity : AppCompatActivity() {
     private val mode = Helper.mode
     private var preparing = true
     private var reset = false
+    private var gameMode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,8 @@ class Mode1Activity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
 
-        preparingGame(preparing)
+        gameMode = intent.getIntExtra(EXTRA_MODE, 0)
+        preparingGame(preparing, gameMode)
 
         binding.apply {
 
@@ -50,6 +52,7 @@ class Mode1Activity : AppCompatActivity() {
                         Log.d("Mode1Activity", "it\t: $it")
                         tvPlayer1Count.text = it.toString()
                     }
+                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -66,6 +69,7 @@ class Mode1Activity : AppCompatActivity() {
                             tvPlayer2Count.text = it.toString()
                         }
                     }
+                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -76,7 +80,7 @@ class Mode1Activity : AppCompatActivity() {
     }
 
     // Prepare game state
-    private fun preparingGame(preparing: Boolean) {
+    private fun preparingGame(preparing: Boolean, gameMode: Int) {
         binding.apply {
 
             if (preparing) {
@@ -84,9 +88,33 @@ class Mode1Activity : AppCompatActivity() {
                 btnPlayer1.hide()
                 btnPlayer2.hide()
             } else {
-                startTimer(Helper.countDownGame)
-                btnPlayer1.show()
-                btnPlayer2.show()
+
+                when (gameMode) {
+//                    Mode Time
+                    0 -> {
+                        startTimer(Helper.countDownGame)
+                        btnPlayer1.show()
+                        btnPlayer2.show()
+                    }
+//                    Mode 50
+                    1 -> {
+                        tvGameTime.text = getString(R.string.total)
+                        tvGameTimeCount.text = "/50"
+                        tvGameTimeCount.setTextColor(funOnSecondaryColor())
+                        btnPlayer1.show()
+                        btnPlayer2.show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun startFifty() {
+        model.stateFifty.observe(this@Mode1Activity) {
+            Log.d("Mode1Activity", "stateFifty\t: $it")
+            when (it) {
+                1 -> resultGame()
+                2 -> resultGame()
             }
         }
     }
@@ -105,7 +133,7 @@ class Mode1Activity : AppCompatActivity() {
                 when (preparing) {
                     true -> {
                         preparing = false
-                        preparingGame(preparing)
+                        preparingGame(preparing, gameMode)
                     }
                     else -> {
                         resultGame()
@@ -174,11 +202,11 @@ class Mode1Activity : AppCompatActivity() {
     }
 
     // Reset game from 0 with same mode
-    private fun resetGame(){
+    private fun resetGame() {
         reset = true
         model.resetGame()
         preparing = true
-        preparingGame(preparing)
+        preparingGame(preparing, gameMode)
 
         binding.apply {
             tvResultPlayer1.visibility = View.INVISIBLE
@@ -203,5 +231,9 @@ class Mode1Activity : AppCompatActivity() {
         val typedValue = TypedValue()
         theme.resolveAttribute(R.attr.colorOnSecondary, typedValue, true)
         return typedValue.data
+    }
+
+    companion object {
+        const val EXTRA_MODE = "extra_mode"
     }
 }
