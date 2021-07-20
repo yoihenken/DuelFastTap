@@ -1,0 +1,271 @@
+package id.bagusbayu.duelfasttap.ui.mode2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
+import android.util.TypedValue
+import android.view.View
+import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import id.bagusbayu.duelfasttap.R
+import id.bagusbayu.duelfasttap.databinding.ActivityMode2Binding
+import id.bagusbayu.duelfasttap.tools.Helper
+import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
+import kotlin.random.Random
+
+class Mode2Activity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityMode2Binding
+    private val model : Mode2ViewModel by viewModels()
+    private lateinit var countdownTimer: CountDownTimer
+    private val vertBias = Helper.verticalBias
+    private val horiBias = Helper.horizontalBias
+    private var preparing = true
+    private var reset = false
+    private var gameMode = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMode2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Hide the nav bar and status bar
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+
+        gameMode = intent.getIntExtra(Mode1Activity.EXTRA_MODE, 0)
+        preparingGame(preparing, gameMode)
+
+        binding.apply {
+
+//            Player 1 Target
+            btnPlayer1.apply {
+                setOnClickListener {
+                    // Positioning Target
+                    layoutParams = positioning()
+
+                    //Add point
+                    model.addPlayer1Count()
+                    model.player1Count.observe(this@Mode2Activity) {
+                        Log.d("Mode1Activity", "it\t: $it")
+                        tvPlayer1Count.text = it.toString()
+                    }
+                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
+                }
+            }
+
+//            Player 2 Target
+            btnPlayer2.apply {
+                setOnClickListener {
+                    // Positioning Target
+                    layoutParams = positioning()
+
+                    //Add point
+                    model.apply {
+                        addPlayer2Count()
+                        player2Count.observe(this@Mode2Activity) {
+                            tvPlayer2Count.text = it.toString()
+                        }
+                    }
+                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
+                }
+            }
+
+//            Player 3 Target
+            btnPlayer3.apply {
+                setOnClickListener {
+                    // Positioning Target
+                    layoutParams = positioning()
+
+                    //Add point
+                    model.apply {
+                        addPlayer3Count()
+                        player3Count.observe(this@Mode2Activity) {
+                            tvPlayer3Count.text = it.toString()
+                        }
+                    }
+                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
+                }
+            }
+
+            btnBackHome.setOnClickListener { finish() } //end game
+            btnResetGame.setOnClickListener { resetGame() } //reset game
+        }
+    }
+
+    // Prepare game state
+    private fun preparingGame(preparing: Boolean, gameMode: Int) {
+        binding.apply {
+
+            if (preparing) {
+                startTimer(Helper.countDownPreparing)
+                btnPlayer1.hide()
+                btnPlayer2.hide()
+                btnPlayer3.hide()
+            } else {
+
+                when (gameMode) {
+//                    Mode Time
+                    0 -> {
+                        startTimer(Helper.countDownGame)
+                        btnPlayer1.show()
+                        btnPlayer2.show()
+                        btnPlayer3.show()
+                    }
+//                    Mode 50
+                    1 -> {
+                        tvGameTime.text = getString(R.string.total)
+                        tvGameTimeCount.text = "/50"
+                        tvGameTimeCount.setTextColor(funOnSecondaryColor())
+                        btnPlayer1.show()
+                        btnPlayer2.show()
+                        btnPlayer3.show()
+                    }
+                }
+            }
+        }
+    }
+
+    // Change target position
+    private fun positioning(): ConstraintLayout.LayoutParams {
+        // generate random place
+        val randomH = Random.nextInt(horiBias.size)
+        val randomV = Random.nextInt(vertBias.size)
+
+        // Positioning Target
+        val position = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            horizontalBias = horiBias[randomH].toFloat()
+            verticalBias = vertBias[randomV].toFloat()
+            binding.layoutMode2.apply {
+                topToTop = id
+                bottomToBottom = id
+                startToStart = id
+                endToEnd = id
+            }
+        }
+        return position
+    }
+
+    private fun startFifty() {
+        model.stateFifty.observe(this@Mode2Activity) {
+            Log.d("Mode1Activity", "stateFifty\t: $it")
+            when (it) {
+                1 -> resultGame()
+                2 -> resultGame()
+                3 -> resultGame()
+            }
+        }
+    }
+
+    // show result game state
+    private fun resultGame() {
+        binding.apply {
+
+            tvResult1.apply {
+                visibility = View.VISIBLE
+                text = when (model.playerWinner()) {
+                    0 -> getString(R.string.draw)
+                    1 -> "${getString(R.string.winner)} \n ${getString(R.string.player_1)}"
+                    2 -> "${getString(R.string.winner)} \n ${getString(R.string.player_2)}"
+                    3 -> "${getString(R.string.winner)} \n ${getString(R.string.player_3)}"
+                    else -> getString(R.string.draw)
+                }
+            }
+            tvResult2.apply {
+                visibility = View.VISIBLE
+                text = when (model.playerWinner()) {
+                    0 -> getString(R.string.draw)
+                    1 -> "${getString(R.string.winner)} \n ${getString(R.string.player_1)}"
+                    2 -> "${getString(R.string.winner)} \n ${getString(R.string.player_2)}"
+                    3 -> "${getString(R.string.winner)} \n ${getString(R.string.player_3)}"
+                    else -> getString(R.string.draw)
+                }
+            }
+
+            btnPlayer1.hide()
+            btnPlayer2.hide()
+            btnPlayer3.hide()
+        }
+    }
+
+    private fun startTimer(timeInSeconds: Long) {
+
+        if (reset) {
+            countdownTimer.cancel()
+            reset = false
+        }
+
+        countdownTimer = object : CountDownTimer(timeInSeconds, 1000) {
+
+            // Time finish
+            override fun onFinish() {
+                when (preparing) {
+                    true -> {
+                        preparing = false
+                        preparingGame(preparing, gameMode)
+                    }
+                    else -> {
+                        resultGame()
+                    }
+                }
+            }
+
+            // Counting Time
+            override fun onTick(timeMilliSeconds: Long) {
+                val seconds = (timeMilliSeconds / 1000) % 60
+                Log.d("Mode1Activity", "seconds\t: $seconds")
+
+                binding.apply {
+                    if (seconds <= 3) tvGameTimeCount.setTextColor(resources.getColor(R.color.player_1))
+                    else tvGameTimeCount.setTextColor(funOnSecondaryColor())
+                    tvGameTimeCount.text = "${seconds}S"
+                }
+            }
+
+        }
+        countdownTimer.start()
+    }
+
+    // Reset game from 0 with same mode
+    private fun resetGame() {
+        reset = true
+        model.resetGame()
+        preparing = true
+        preparingGame(preparing, gameMode)
+
+        binding.apply {
+            tvResult1.visibility = View.INVISIBLE
+            tvResult2.visibility = View.INVISIBLE
+        }
+    }
+
+    // Hide the nav bar and status bar when status bar displayed
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
+    private fun hideSystemUI() {
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+    }
+
+    private fun funOnSecondaryColor(): Int {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(R.attr.colorOnSecondary, typedValue, true)
+        return typedValue.data
+    }
+
+    companion object {
+        const val EXTRA_MODE = "extra_mode"
+    }
+}

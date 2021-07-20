@@ -14,6 +14,7 @@ import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.DialogNewGameBinding
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity.Companion.EXTRA_MODE
+import id.bagusbayu.duelfasttap.ui.mode2.Mode2Activity
 
 
 class NewGameDialogFragment(private val baseContext: Context) : DialogFragment() {
@@ -206,10 +207,11 @@ class NewGameDialogFragment(private val baseContext: Context) : DialogFragment()
     private fun startModeGame(mode: Int) {
         when (mode) {
             0 -> {
-                baseContext.startActivity(Intent(
-                    context,
-                    Mode1Activity::class.java
-                ).apply { putExtra(EXTRA_MODE, 0) })
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode1Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 0) })
                 dismiss()
             }
             1 -> {
@@ -220,18 +222,22 @@ class NewGameDialogFragment(private val baseContext: Context) : DialogFragment()
                     ).apply { putExtra(EXTRA_MODE, 1) })
                 dismiss()
             }
-            2 -> context?.startActivity(
-                Intent(
-                    context,
-                    Mode1Activity::class.java
-                )
-            )
-            3 -> context?.startActivity(
-                Intent(
-                    context,
-                    Mode1Activity::class.java
-                )
-            )
+            2 -> {
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode2Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 0) })
+                dismiss()
+            }
+            3 -> {
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode2Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 1) })
+                dismiss()
+            }
             4 -> context?.startActivity(
                 Intent(
                     context,

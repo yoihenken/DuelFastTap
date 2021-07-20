@@ -26,4 +26,13 @@
         <item name="strokeWidth">0dp</item>
         <item name="iconTint">@color/purple_500</item>
     </style>
+
+    <style name="Theme.DuelFastTap.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DuelFastTap.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DuelFastTap.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

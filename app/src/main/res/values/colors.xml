@@ -9,5 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="player_1">#CE1212</color>
     <color name="player_2">#5567f2</color>
+    <color name="player_3">#FFA200</color>
+    <color name="grey">#757575</color>
+
 
 </resources>
