@@ -15,6 +15,7 @@ import id.bagusbayu.duelfasttap.databinding.DialogNewGameBinding
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity.Companion.EXTRA_MODE
 import id.bagusbayu.duelfasttap.ui.mode2.Mode2Activity
+import id.bagusbayu.duelfasttap.ui.mode3.Mode3Activity
 
 
 class NewGameDialogFragment(private val baseContext: Context) : DialogFragment() {
@@ -238,18 +239,22 @@ class NewGameDialogFragment(private val baseContext: Context) : DialogFragment()
                     ).apply { putExtra(EXTRA_MODE, 1) })
                 dismiss()
             }
-            4 -> context?.startActivity(
-                Intent(
-                    context,
-                    Mode1Activity::class.java
-                )
-            )
-            5 -> context?.startActivity(
-                Intent(
-                    context,
-                    Mode1Activity::class.java
-                )
-            )
+            4 -> {
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode3Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 0) })
+                dismiss()
+            }
+            5 -> {
+                baseContext.startActivity(
+                    Intent(
+                        context,
+                        Mode3Activity::class.java
+                    ).apply { putExtra(EXTRA_MODE, 1) })
+                dismiss()
+            }
             else -> "Select Mode"
         }
     }
