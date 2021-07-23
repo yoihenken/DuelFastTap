@@ -1,9 +1,12 @@
 package id.bagusbayu.duelfasttap.ui.mode1
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import id.bagusbayu.duelfasttap.model.DataHistory
+import id.bagusbayu.duelfasttap.repo.local.HistoryService
 import kotlinx.coroutines.launch
 
 class Mode1ViewModel : ViewModel() {
@@ -50,5 +53,10 @@ class Mode1ViewModel : ViewModel() {
         currentPlayer2Count = 0
         _player2Count.value = currentPlayer2Count
         _stateFifty.value = 0
+    }
+
+    // Save result to Database
+    fun saveHistory(application: Application, dataHistory: DataHistory) = viewModelScope.launch {
+        HistoryService(application).addToSave(dataHistory)
     }
 }

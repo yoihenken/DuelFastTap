@@ -1,6 +1,7 @@
 package id.bagusbayu.duelfasttap.tools
 
 import android.view.Gravity
+import id.bagusbayu.duelfasttap.model.DataHistory
 
 object Helper {
 
@@ -13,6 +14,7 @@ object Helper {
     // Total targaet 50 tap
     const val totalGame = 50
 
+    // Position for 2 Player
     val mode = listOf(
         Gravity.START or Gravity.TOP,
         Gravity.START or Gravity.CENTER,
@@ -25,6 +27,7 @@ object Helper {
         Gravity.CENTER or Gravity.BOTTOM,
     )
 
+    //Position for 3 Player and 4 Player
     val verticalBias = listOf(
         0.05,
         0.15,
@@ -43,4 +46,27 @@ object Helper {
         0.7,
         0.9
     )
+
+    fun List<DataHistory>.toDataBasedPlayerMode(page : Int): MutableList<DataHistory> {
+        val data = mutableListOf<DataHistory>()
+        when (page) {
+            0 -> { // 2 Player
+                this.forEach {
+                    if (it.modePlayer == "2 PLAYER") data.add(it)
+                }
+            }
+            1 -> { // 3 Player
+                this.forEach {
+                    if (it.modePlayer == "3 PLAYER") data.add(it)
+                }
+            }
+            2 -> { // 4 Player
+                this.forEach {
+                    if (it.modePlayer == "4 PLAYER") data.add(it)
+                }
+            }
+        }
+        return data
+    }
+
 }

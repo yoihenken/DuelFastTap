@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_mode_game"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_time" />
+
+    <TextView
+        android:id="@+id/tv_winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_light"
+        android:text="@string/winner"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_winner_player"
+        app:layout_constraintEnd_toStartOf="@id/split_1"
+        app:layout_constraintStart_toEndOf="@+id/iv_mode_game"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_winner_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/split_1"
+        app:layout_constraintStart_toEndOf="@+id/iv_mode_game"
+        app:layout_constraintTop_toBottomOf="@id/tv_winner" />
+
+    <TextView
+        android:id="@+id/split_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_light"
+        android:text="|"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_player_1"
+        app:layout_constraintStart_toEndOf="@+id/tv_winner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_player_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_1"
+        android:textColor="@color/player_1"
+        android:textSize="12sp"
+        android:fontFamily="@font/opensans_light"
+        app:layout_constraintBottom_toTopOf="@id/tv_score_player_1"
+        app:layout_constraintEnd_toStartOf="@id/split_2"
+        app:layout_constraintStart_toEndOf="@+id/split_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_score_player_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/player_1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_player_1"
+        app:layout_constraintEnd_toEndOf="@id/tv_player_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_player_1" />
+
+    <TextView
+        android:id="@+id/split_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:text="-"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_player_2"
+        app:layout_constraintStart_toEndOf="@+id/tv_score_player_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_player_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_2"
+        android:textColor="@color/player_2"
+        android:textSize="12sp"
+        android:fontFamily="@font/opensans_light"
+        app:layout_constraintBottom_toTopOf="@id/tv_score_player_2"
+        app:layout_constraintEnd_toStartOf="@id/split_3"
+        app:layout_constraintStart_toEndOf="@+id/split_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_score_player_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/player_2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_player_2"
+        app:layout_constraintEnd_toEndOf="@id/tv_player_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_player_2" />
+
+    <TextView
+        android:id="@+id/split_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="-"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_player_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_score_player_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_player_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_3"
+        android:textColor="@color/player_3"
+        android:textSize="12sp"
+        android:fontFamily="@font/opensans_light"
+        app:layout_constraintBottom_toTopOf="@id/tv_score_player_3"
+        app:layout_constraintEnd_toStartOf="@id/split_4"
+        app:layout_constraintStart_toEndOf="@+id/split_3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_score_player_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/player_3"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_player_3"
+        app:layout_constraintStart_toStartOf="@id/tv_player_3"
+        app:layout_constraintTop_toBottomOf="@id/tv_player_3" />
+
+    <TextView
+        android:id="@+id/split_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:text="-"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_player_4"
+        app:layout_constraintStart_toEndOf="@+id/tv_score_player_3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_player_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_4"
+        android:textColor="@color/player_4"
+        android:textSize="12sp"
+        android:fontFamily="@font/opensans_light"
+        app:layout_constraintBottom_toTopOf="@id/tv_score_player_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/split_4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_score_player_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/player_4"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_player_4"
+        app:layout_constraintStart_toStartOf="@id/tv_player_4"
+        app:layout_constraintTop_toBottomOf="@id/tv_player_4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

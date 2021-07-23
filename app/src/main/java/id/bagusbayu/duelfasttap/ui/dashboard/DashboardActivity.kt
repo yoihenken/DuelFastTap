@@ -1,5 +1,6 @@
 package id.bagusbayu.duelfasttap.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import id.bagusbayu.duelfasttap.databinding.ActivityDashboardBinding
 import id.bagusbayu.duelfasttap.databinding.DialogNewGameBinding
 import id.bagusbayu.duelfasttap.ui.dashboard.aboutdialog.AboutDialog
 import id.bagusbayu.duelfasttap.ui.dashboard.newgamedialog.NewGameDialogFragment
+import id.bagusbayu.duelfasttap.ui.history.HistoryActivity
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -30,6 +32,10 @@ class DashboardActivity : AppCompatActivity() {
 
             btnNewGame.setOnClickListener {
                 newGameDialog.show(supportFragmentManager, "DialogNewGame")
+            }
+
+            btnHistory.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, HistoryActivity::class.java))
             }
 
             btnAbout.setOnClickListener {

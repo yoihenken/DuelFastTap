@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.ActivityMode3Binding
+import id.bagusbayu.duelfasttap.model.DataHistory
 import id.bagusbayu.duelfasttap.tools.Helper
 import id.bagusbayu.duelfasttap.ui.mode1.Mode1Activity
 import kotlin.random.Random
@@ -53,7 +54,6 @@ class Mode3Activity : AppCompatActivity() {
                         Log.d("Mode1Activity", "it\t: $it")
                         tvPlayer1Count.text = it.toString()
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -70,7 +70,6 @@ class Mode3Activity : AppCompatActivity() {
                             tvPlayer2Count.text = it.toString()
                         }
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -87,7 +86,6 @@ class Mode3Activity : AppCompatActivity() {
                             tvPlayer3Count.text = it.toString()
                         }
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -104,10 +102,10 @@ class Mode3Activity : AppCompatActivity() {
                             tvPlayer4Count.text = it.toString()
                         }
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
+            if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
             btnBackHome.setOnClickListener { finish() } //end game
             btnResetGame.setOnClickListener { resetGame() } //reset game
         }
@@ -215,6 +213,26 @@ class Mode3Activity : AppCompatActivity() {
             btnPlayer2.hide()
             btnPlayer3.hide()
             btnPlayer4.hide()
+
+            // Save to database
+            model.saveHistory(
+                application, DataHistory(
+                    modePlayer = "4 PLAYER",
+                    modeGame = gameMode,
+                    winner = when (model.playerWinner()) {
+                        0 -> getString(R.string.draw)
+                        1 -> getString(R.string.player_1)
+                        2 -> getString(R.string.player_2)
+                        3 -> getString(R.string.player_3)
+                        4 -> getString(R.string.player_4)
+                        else -> getString(R.string.draw)
+                    },
+                    scorePlayer1 = tvPlayer1Count.text.toString().toInt(),
+                    scorePlayer2 = tvPlayer2Count.text.toString().toInt(),
+                    scorePlayer3 = tvPlayer3Count.text.toString().toInt(),
+                    scorePlayer4 = tvPlayer4Count.text.toString().toInt(),
+                )
+            )
         }
     }
 

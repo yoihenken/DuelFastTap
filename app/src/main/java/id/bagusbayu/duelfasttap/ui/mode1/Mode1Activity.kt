@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import id.bagusbayu.duelfasttap.R
 import id.bagusbayu.duelfasttap.databinding.ActivityMode1Binding
+import id.bagusbayu.duelfasttap.model.DataHistory
 import id.bagusbayu.duelfasttap.tools.Helper
 import kotlin.random.Random
 
@@ -52,7 +53,6 @@ class Mode1Activity : AppCompatActivity() {
                         Log.d("Mode1Activity", "it\t: $it")
                         tvPlayer1Count.text = it.toString()
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
 
@@ -69,9 +69,10 @@ class Mode1Activity : AppCompatActivity() {
                             tvPlayer2Count.text = it.toString()
                         }
                     }
-                    if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
                 }
             }
+
+            if (gameMode == 1) startFifty() //For trigger win when gameMode is fifty
 
             btnBackHome.setOnClickListener { finish() } //end game
             btnResetGame.setOnClickListener { resetGame() } //reset game
@@ -198,6 +199,22 @@ class Mode1Activity : AppCompatActivity() {
 
             btnPlayer1.hide()
             btnPlayer2.hide()
+
+            // Save to database
+            model.saveHistory(
+                application, DataHistory(
+                    modePlayer = "2 PLAYER",
+                    modeGame = gameMode,
+                    winner = when (model.playerWinner()) {
+                        0 -> getString(R.string.draw)
+                        1 -> getString(R.string.player_1)
+                        2 -> getString(R.string.player_2)
+                        else -> getString(R.string.draw)
+                    },
+                    scorePlayer1 = tvPlayer1Count.text.toString().toInt(),
+                    scorePlayer2 = tvPlayer2Count.text.toString().toInt(),
+                )
+            )
         }
     }
 
