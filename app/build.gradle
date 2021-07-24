@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -75,15 +76,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.activity:activity-ktx:$activity_version"
 
-    // mockito
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: "${mockito_version}"
-    testImplementation "org.mockito:mockito-inline:${mockito_version}"
-    testImplementation "org.mockito.kotlin:mockito-kotlin:${mockito_version}"
 
-    // Koin main features for Android (Scope,ViewModel ...)
-    implementation "io.insert-koin:koin-android:$koin_version"
-    // Koin Android - experimental builder extensions
-    implementation "io.insert-koin:koin-android-ext:$koin_version"
-    // Koin testing tools
-    testImplementation "io.insert-koin:koin-test:$koin_version"
+    implementation 'com.android.support:multidex:1.0.3'
+
 }
